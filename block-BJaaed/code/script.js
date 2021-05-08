@@ -1,5 +1,5 @@
-
-   let books = [
+let allBooks = {
+    books: [
       {
         isbn: "9781593275846",
         title: "Eloquent JavaScript, Second Edition",
@@ -115,19 +115,25 @@
         website: "https://shichuan.github.io/javascript-patterns/",
       },
     ],
+  };
 
-  let ul = document.querySelector('ul');
-  books.forEach(book => {
+  let rootElement = document.querySelector('ul');
+  allBooks.books.forEach(book => {
       let li = document.createElement('li');
       let img = document.createElement('img');
       img.src = book.image;
+      img.alt = book.title;
       let h2 = document.createElement('h2');
       h2.innerText = book.title;
       let p = document.createElement('p');
-      p.innerText - book.author;
+      p.innerText = "Author"
+      let span = document.createElement('span');
+      let authorName = document.createTextNode(book.author);
+      span.append(authorName);
+      p.append(span);
       let btn = document.createElement('button');
-      btn.textContent = "Buy Now";
-        li.append(img, h2, p, btn);
-        ul.append(li);
+      btn.innerText = "Buy Now";
+      li.append(img, h2, p, btn);
+      rootElement.append(li);
   }
     )
