@@ -1,17 +1,26 @@
+let allPeople = got.houses.reduce(
+    (acc, cv) => {
+    acc.concat(cv.people)
+    return acc;
+}, []);
 
-let rootElement = document.querySelector('ul');
+let parentElem = document.querySelector('.mainbox');
 
-got.houses.people.forEach(char => {
-    let li = document.querySelector('li');
-    let img = document.querySelector('img');
-    img.src = char.image;
-    img.alt = char.name;
-    let span = document.querySelector('span');
-    span.innerText = char.name;
-    let p = document.querySelector('p');
-    p.innerText = char.description;
-    let btn = document.querySelector('button');
-    btn.innerText = "Learn More!";
-    li.append(img, span, p, btn);
-    rootElement.append(li);
-})
+let cardsHTML = allPeople.map(
+    person => {
+        return
+        `<li class = "card">
+            <div class = "info">
+                <img 
+                src = "${person,image}" 
+                alt = "${person.name}"
+                />
+                <h2>${person.name}</h2>
+            </div>
+            <p>${person.description}</p>
+            <a href = "${person.wikiLink}">Learn More!</a>
+        </li>`;
+    }
+);
+
+parentElem.innerHTML = cardsHTML.join("");
